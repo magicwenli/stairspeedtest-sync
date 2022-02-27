@@ -1,5 +1,5 @@
 import json as js
-import os
+import os,stat
 import shutil
 import base64
 
@@ -9,8 +9,8 @@ def clean_public():
     '''
     Clean the public folder before the rendering process
     '''
-    shutil.rmtree('./stairspeedtest/logs',True)
-    shutil.rmtree('./stairspeedtest/results',True)
+    # shutil.rmtree('./stairspeedtest/logs',True)
+    # shutil.rmtree('./stairspeedtest/results',True)
     shutil.rmtree('./public')
     os.mkdir('public')
     with open('./public/.gitkeep', 'wb') as f:
@@ -45,12 +45,11 @@ def getSSTR():
     if os.path.isdir('./stairspeedtest'):
         pass
     else:
-        url = 'https://github.com/magicwenli/stairspeedtest-reborn/releases/download/latest/stairspeedtest_reborn_linux32.zip'
-        cmd = 'wget '+ url + ' -O temp.zip && mkdir stairspeedtest && unzip temp.zip -d stairspeedtest && rm temp.zip'
-        print(cmd)
+        url = 'https://github.com/magicwenli/stairspeedtest-reborn/releases/latest/download/stairspeedtest_reborn_linux64.tar.gz'
+        cmd = 'wget '+ url + ' -O temp.tar.gz && mkdir stairspeedtest && tar zxvf temp.tar.gz && rm temp.tar.gz'
         os.system(cmd)
         try:
-            os.system('chmod +x ./stairspeedtest/stairspeedtest')
+            os.chmod('stairspeedtest/stairspeedtest',stat.S_IXUSR)
         except Exception as e:
             print(e)
 
