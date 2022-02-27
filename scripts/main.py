@@ -3,7 +3,7 @@ import os,stat
 import shutil
 import base64
 
-FLITERED_SUBSCRIBE_LINKS_PATH = './stairspeedtest/results/sub.txt'
+FLITERED_SUBSCRIPTION_LINKS_PATH = 'stairspeedtest/results/subscribes.txt'
 
 def clean_public():
     '''
@@ -11,7 +11,7 @@ def clean_public():
     '''
     # shutil.rmtree('./stairspeedtest/logs',True)
     # shutil.rmtree('./stairspeedtest/results',True)
-    shutil.rmtree('./public')
+    shutil.rmtree('public',True)
     os.mkdir('public')
     with open('./public/.gitkeep', 'wb') as f:
         f.writelines('')
@@ -78,7 +78,7 @@ if __name__ == "__main__":
     speedtest(sub_list)
     print('[INFO]Speed test done...')
 
-    Combined = read_file(FLITERED_SUBSCRIBE_LINKS_PATH)
+    Combined = read_file(FLITERED_SUBSCRIPTION_LINKS_PATH)
 
     print('[INFO]Cleanup...')
     clean_public()
@@ -106,5 +106,6 @@ if __name__ == "__main__":
         f.close()
     print('[INFO]Writing completed!')
     # End writing the data to the file
+    os.remove('stairspeedtest/results/subscribes.txt')
 
     print('Done!')
