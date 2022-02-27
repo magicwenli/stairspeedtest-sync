@@ -1,0 +1,12 @@
+{
+    "global":{
+        "path": "v2sync/subscripts.txt"
+    },
+    "subs": {
+        "sub1": {
+            "type": "sub",
+            "nick": "sub1",
+            "link": "sublink"
+        }
+    }
+}

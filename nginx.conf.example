@@ -1,0 +1,11 @@
+server {
+	listen 80 default_server;
+	server_name server_name.cn;
+	access_log /var/log/nginx/access.log;
+	error_log /var/log/nginx/error.log;
+	
+	location /file/v2sync {
+		alias /home/ubuntu/v2sync/public/v2sync/;
+		expires	1d;
+	}
+}
